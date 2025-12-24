@@ -68,6 +68,18 @@ policy_loss:
   # KL divergence penalty coefficient
   ppo_kl_coef: 0.1
 
+  # Ratio clip config
+  ratio_clip:
+
+    # ratio_mode: dgpo / ppo
+    ratio_mode: ppo
+
+    # hyperparameter n for dgpo, recommend to set 1, 2, 3
+    dgpo_n: 1
+
+    # hyperparameter m for dgpo, recommend to set 1, 2, 3
+    dgpo_m: 2
+
 # Constant C in Dual-clip PPO; clips when advantage < 0 and ratio > C
 clip_ratio_c: 3.0
 
