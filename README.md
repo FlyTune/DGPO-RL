@@ -40,7 +40,7 @@ pip install -r requirements.txt
 We provide a complete example script for training with DGPO on GSM8K dataset:
 
 ```bash
-bash examples/dgpo_trainer/run_qwen3-8b.sh
+bash examples/dgpo_trainer/run_deepseek-r1-distill-qwen-7b.sh
 ```
 
 ### Key Configuration Parameters
@@ -67,7 +67,7 @@ python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=$HOME/data/gsm8k/train.parquet \
     data.val_files=$HOME/data/gsm8k/test.parquet \
-    actor_rollout_ref.model.path=Qwen/Qwen3-8B \
+    actor_rollout_ref.model.path=deepseek-ai/DeepSeek-R1-Distill-Qwen-7B \
     actor_rollout_ref.actor.policy_loss.ratio_clip.ratio_mode=dgpo \
     actor_rollout_ref.actor.policy_loss.ratio_clip.dgpo_n=1 \
     actor_rollout_ref.actor.policy_loss.ratio_clip.dgpo_m=2 \
@@ -78,7 +78,7 @@ python3 -m verl.trainer.main_ppo \
 
 ### Full Training Script
 
-For a complete training example, see `examples/dgpo_trainer/run_qwen3-8b.sh`. This script includes:
+For a complete training example, see `examples/dgpo_trainer/run_deepseek-r1-distill-qwen-7b.sh`. This script includes:
 - GRPO advantage estimator configuration
 - DGPO policy loss configuration
 - KL loss settings
@@ -177,7 +177,7 @@ dgpo/
 │       └── actor.yaml             # Configuration file
 ├── examples/
 │   └── dgpo_trainer/
-│       └── run_qwen3-8b.sh        # Example training script
+│       └── run_deepseek-r1-distill-qwen-7b.sh        # Example training script
 └── README.md
 ```
 
