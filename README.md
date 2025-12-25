@@ -119,8 +119,8 @@ We evaluate DGPO on multiple mathematical reasoning benchmarks including AIME24,
 **Key Findings:**
 - **1.5B Model**: DGPO outperforms GRPO by **+4.3%** (48.4 → 52.7) and best baseline (CE-GPPO) by **+3.5%** (49.2 → 52.7) in Avg@32
 - **7B Model**: DGPO outperforms GRPO by **+3.1%** (58.9 → 62.0) and CISPO by **+2.7%** (59.3 → 62.0) in Avg@32
-- DGPO consistently achieves the best performance across all benchmarks and model scales
-- **Bold** indicates best performance, *underlined* indicates second-best
+- DGPO demonstrates superior performance across the majority of benchmarks on both scales
+- **Bold** indicates best performance, *italic* indicates second-best
 
 ### Scalability Analysis
 
