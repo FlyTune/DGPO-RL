@@ -126,9 +126,9 @@ We evaluate DGPO on multiple mathematical reasoning benchmarks including AIME24,
 
 | Method | 1.5B (A@32 / P@32) | 7B (A@32 / P@32) | 14B (A@32 / P@32) |
 |--------|---------------------|-------------------|-------------------|
-| GRPO | 48.4 / 70.1 | 58.9 / 77.2 | 54.4 / 67.4 |
-| **DGPO** | **52.7 / 73.0** | **62.0 / 77.9** | **56.2 / 70.4** |
-| *Improvement* | *+4.3 / +2.9* | *+3.1 / +0.7* | *+1.8 / +3.0* |
+| GRPO | 48.4 / 70.1 | 58.9 / 77.2 | 53.6 / 67.4 |
+| **DGPO** | **52.7 / 73.0** | **62.0 / 77.9** | **56.7 / 70.4** |
+| *Improvement* | *+4.3 / +2.9* | *+3.1 / +0.7* | *+3.1 / +3.0* |
 
 DGPO demonstrates consistent improvements across all model scales, confirming its scalability and robustness.
 
