@@ -23,7 +23,7 @@ We rethink this convention by establishing *probability gradient* ($\nabla_{\the
 ## 🎨 Overview
 
 <div align="center">
-  <img src="docs/images/dgpo_intro.svg" alt="DGPO Overview" width="80%">
+  <img src="docs/images/dgpo_intro.svg" alt="DGPO Overview" width="100%">
   <p><em>Figure 1: Overview of DGPO framework</em></p>
 </div>
 
@@ -168,7 +168,7 @@ Where:
 - $C_{\mathrm{left}}$ and $C_{\mathrm{right}}$: Constants ensuring continuity
 
 <div align="center">
-  <img src="docs/images/dgpo_method.svg" alt="DGPO Method" width="80%">
+  <img src="docs/images/dgpo_method.svg" alt="DGPO Method" width="100%">
   <p><em>Figure 2: DGPO method illustration</em></p>
 </div>
 
