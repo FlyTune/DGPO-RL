@@ -8,9 +8,9 @@
 
 ## 📖 Abstract
 
-Reinforcement Learning with Verifiable Rewards (RLVR) has catalyzed a leap in Large Language Model (LLM) reasoning, yet its optimization dynamics remain fragile. Standard algorithms like GRPO enforce stability via "hard clipping", which inadvertently stifles exploration by discarding gradients of tokens outside the trust region. While recent "soft clipping" methods attempt to recover these gradients, they suffer from a critical challenge: relying on *log-probability gradient* ($\nabla_\theta\log \pi_\theta$) yields divergent weights as probabilities vanish, destabilizing LLM training. 
+Reinforcement Learning with Verifiable Rewards (RLVR) has catalyzed a leap in Large Language Model (LLM) reasoning, yet its optimization dynamics remain fragile. Standard algorithms like GRPO enforce stability via "hard clipping", which inadvertently stifles exploration by discarding gradients of tokens outside the trust region. While recent "soft clipping" methods attempt to recover these gradients, they suffer from a critical challenge: relying on *log-probability gradient* ($\nabla_{\theta} \log \pi_{\theta}$) yields divergent weights as probabilities vanish, destabilizing LLM training. 
 
-We rethink this convention by establishing *probability gradient* ($\nabla_\theta \pi_\theta$) as the superior optimization primitive. Accordingly, we propose **Decoupled Gradient Policy Optimization (DGPO)**, which employs a decoupled decay mechanism based on importance sampling ratios. By applying asymmetric, continuous decay to boundary tokens, DGPO resolves the conflict between stability and sustained exploration. Extensive experiments across DeepSeek-R1-Distill-Qwen series models (1.5B/7B/14B) demonstrate that DGPO consistently outperforms strong baselines on various mathematical benchmarks, offering a robust and scalable solution for RLVR.
+We rethink this convention by establishing *probability gradient* ($\nabla_{\theta} \pi_{\theta}$) as the superior optimization primitive. Accordingly, we propose **Decoupled Gradient Policy Optimization (DGPO)**, which employs a decoupled decay mechanism based on importance sampling ratios. By applying asymmetric, continuous decay to boundary tokens, DGPO resolves the conflict between stability and sustained exploration. Extensive experiments across DeepSeek-R1-Distill-Qwen series models (1.5B/7B/14B) demonstrate that DGPO consistently outperforms strong baselines on various mathematical benchmarks, offering a robust and scalable solution for RLVR.
 
 ## 🎯 Key Contributions
 
@@ -19,6 +19,13 @@ We rethink this convention by establishing *probability gradient* ($\nabla_\thet
 - **DGPO Algorithm**: We propose DGPO, which leverages a decoupled adaptive decay mechanism to reconcile the exploration-stability conflict. Crucially, this design preserves gradients for clipped tokens while rigorously preventing weight divergence.
 
 - **Comprehensive Experiments**: Extensive experiments against competitive baselines across mathematical reasoning benchmarks demonstrate the effectiveness of DGPO. Further results on diverse model scales confirm its scalability and robustness.
+
+## 🎨 Overview
+
+<div align="center">
+  <img src="docs/images/dgpo_intro.svg" alt="DGPO Overview" width="80%">
+  <p><em>Figure 1: Overview of DGPO framework</em></p>
+</div>
 
 ## 🚀 Quick Start
 
@@ -146,17 +153,24 @@ DGPO addresses the fundamental issue in soft clipping methods: **divergent gradi
 
 The DGPO weighting function is defined as:
 
-$$\mathcal{W}^\text{DGPO}_{i,t}(\theta) = \begin{cases} 
-    C_{\text{left}} \cdot \pi_\theta^n(o_{i,t}|q,o_{i,<t}), & \text{if LN (left boundary)}, \\
-    C_{\text{right}} \cdot \pi_\theta^{-\frac{1}{m}}(o_{i,t}|q,o_{i,<t}), & \text{if HP (right boundary)}, \\
-    \frac{1}{\pi_{\theta_{\text{old}}}}, & \text{otherwise}.
-\end{cases}$$
+$$
+\mathcal{W}^{\mathrm{DGPO}}_{i,t}(\theta) = \begin{cases} 
+    C_{\mathrm{left}} \cdot \pi_{\theta}^{n}(o_{i,t}|q,o_{i,<t}), & \text{if LN (left boundary)}, \\
+    C_{\mathrm{right}} \cdot \pi_{\theta}^{-\frac{1}{m}}(o_{i,t}|q,o_{i,<t}), & \text{if HP (right boundary)}, \\
+    \frac{1}{\pi_{\theta_{\mathrm{old}}}}, & \text{otherwise}.
+\end{cases}
+$$
 
 Where:
 - **LN**: Low IS ratio with negative advantage (left boundary)
 - **HP**: High IS ratio with positive advantage (right boundary)
-- $n, m \in \mathbb{Z}^+$: Hyperparameters controlling decay rate
-- $C_{\text{left}}$ and $C_{\text{right}}$: Constants ensuring continuity
+- $n, m \in \mathbb{Z}^{+}$: Hyperparameters controlling decay rate
+- $C_{\mathrm{left}}$ and $C_{\mathrm{right}}$: Constants ensuring continuity
+
+<div align="center">
+  <img src="docs/images/dgpo_method.svg" alt="DGPO Method" width="80%">
+  <p><em>Figure 2: DGPO method illustration</em></p>
+</div>
 
 ### Key Advantages
 
