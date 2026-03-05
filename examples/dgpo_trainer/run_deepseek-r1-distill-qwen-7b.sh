@@ -36,8 +36,8 @@ python3 -m verl.trainer.main_ppo \
     algorithm.use_kl_in_reward=False \
     trainer.critic_warmup=0 \
     trainer.logger='["console","wandb"]' \
-    trainer.project_name='verl_grpo_example_gsm8k' \
-    trainer.experiment_name='qwen3_8b_function_rm' \
+    trainer.project_name='verl_dgpo_example_gsm8k' \
+    trainer.experiment_name='dgpo_deepseek_r1_distill_qwen_7b_gsm8k' \
     trainer.n_gpus_per_node=8 \
     trainer.nnodes=1 \
     trainer.save_freq=20 \
